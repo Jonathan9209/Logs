@@ -1,31 +1,29 @@
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Logs_prueba.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class Logs : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
+    private static readonly string[] Nombres = new[]
     {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        "Jonathan","Carlos"
     };
 
-    private readonly ILogger<WeatherForecastController> _logger;
+    private readonly ILogger<Logs> _logger;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
-    {
-        _logger = logger;
-    }
+    public Logs_prueba(ILogger<Logs> logger) => _logger = logger;
 
-    [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    [HttpGet(Name = "Logs")]
+    public IEnumerable<Logs> Get(Enumerable enumerable)
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = DateTime.Now.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+        return (IEnumerable<Logs>)enumerable  {
+            Cedula = (index),
+            Nombre = Nombres[(Nombres.Length)]
         })
         .ToArray();
     }
